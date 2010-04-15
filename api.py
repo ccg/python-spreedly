@@ -20,33 +20,33 @@ def str_to_datetime(s):
 
 def _parse_subscriber(plan):
     return {
-        'customer_id': int(plan.findtext('customer-id')),
-        'first_name': plan.findtext('billing-first-name'),
-        'last_name': plan.findtext('billing-last-name'),
-        'email': plan.findtext('email'),
-        'screen_name': plan.findtext('screen-name'),
         'active': True if plan.findtext('active') == 'true' else False,
+        'active_until': str_to_datetime(plan.findtext('active-until')) if plan.findtext('active-until') else None,
+        'card_expires_before_next_auto_renew': \
+            True if plan.findtext('card-expires-before-next-auto-renew') == 'true' \
+            else False,
+        'created_at': str_to_datetime(plan.findtext('created-at')),
+        'customer_id': int(plan.findtext('customer-id')),
+        'date_changed': str_to_datetime(plan.findtext('updated-at')),
+        'email': plan.findtext('email'),
+        'feature_level': plan.findtext('feature-level'),
+        'first_name': plan.findtext('billing-first-name'),
         'gift': True if plan.findtext('on-gift') == 'true' else False,
+        'last_name': plan.findtext('billing-last-name'),
+        'lifetime': \
+            True if plan.findtext('lifetime-subscription') == 'true' \
+            else False,
+        'name': plan.findtext('subscription-plan-name'),
+        'recurring': \
+            True if plan.findtext('recurring') == 'true' \
+            else False,
+        'screen_name': plan.findtext('screen-name'),
+        'token': plan.findtext('token'),
         'trial_active': \
             True if plan.findtext('on-trial') == 'true' else False,
         'trial_eligible': \
             True if plan.findtext('eligible-for-free-trial') == 'true' \
             else False,
-        'lifetime': \
-            True if plan.findtext('lifetime-subscription') == 'true' \
-            else False,
-        'recurring': \
-            True if plan.findtext('recurring') == 'true' \
-            else False,
-        'card_expires_before_next_auto_renew': \
-            True if plan.findtext('card-expires-before-next-auto-renew') == 'true' \
-            else False,
-        'token': plan.findtext('token'),
-        'name': plan.findtext('subscription-plan-name'),
-        'feature_level': plan.findtext('feature-level'),
-        'created_at': str_to_datetime(plan.findtext('created-at')),
-        'date_changed': str_to_datetime(plan.findtext('updated-at')),
-        'active_until': str_to_datetime(plan.findtext('active-until')) if plan.findtext('active-until') else None,
     }
 
 

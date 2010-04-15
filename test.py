@@ -9,9 +9,10 @@ SPREEDLY_SITE_NAME = 'shelfworthytest'
 
 class TestCase(unittest.TestCase):
     subscriber_keys = set([
-        'token', 'active_until', 'trial_active', 'created_at',
-        'active', 'lifetime', 'customer_id', 'date_changed',
-        'trial_elegible', 'plan', 'card_expires_before_next_auto_renew'
+        'active', 'active_until', 'card_expires_before_next_auto_renew',
+        'created_at', 'customer_id', 'date_changed', 'email', 'first_name',
+        'feature_level', 'gift', 'last_name', 'lifetime', 'name', 'recurring',
+        'screen_name', 'token', 'trial_active', 'trial_eligible', #'plan',
     ])
 
     def setUp(self):
@@ -28,8 +29,8 @@ class TestCase(unittest.TestCase):
         keys = [
             'date_changed', 'terms', 'name', 'force_recurring', 'feature_level',
             'price', 'enabled', 'plan_type', 'force_renew', 'duration_units',
-            'version', 'speedly_site_id', 'duration', 'created_at',
-            'speedly_id', 'return_url', 'description'
+            'version', 'spreedly_site_id', 'duration', 'created_at',
+            'spreedly_id', 'return_url', 'description'
         ]
 
         for plan in self.sclient.get_plans():
