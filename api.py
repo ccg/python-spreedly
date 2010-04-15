@@ -18,7 +18,7 @@ def str_to_datetime(s):
     return utc_to_local(datetime.strptime(s, '%Y-%m-%dT%H:%M:%SZ'))
 
 
-class Client:
+class Client(object):
     def __init__(self, token, site_name):
         self.auth = b64encode('%s:x' % token)
         self.base_host = 'spreedly.com'
