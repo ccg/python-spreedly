@@ -81,8 +81,8 @@ class Client:
                 'return_url': plan.findtext('return-url'),
                 'version': int(plan.findtext('version')) \
                     if plan.findtext('version') else 0,
-                'speedly_id': int(plan.findtext('id')),
-                'speedly_site_id': int(plan.findtext('site-id')) \
+                'spreedly_id': int(plan.findtext('id')),
+                'spreedly_site_id': int(plan.findtext('site-id')) \
                     if plan.findtext('site-id') else 0,
                 'created_at': str_to_datetime(plan.findtext('created-at')),
                 'date_changed': str_to_datetime(plan.findtext('updated-at')),
@@ -116,7 +116,7 @@ class Client:
                 'gift': True if plan.findtext('on-gift') == 'true' else False,
                 'trial_active': \
                     True if plan.findtext('on-trial') == 'true' else False,
-                'trial_elegible': \
+                'trial_eligible': \
                     True if plan.findtext('eligible-for-free-trial') == 'true' \
                     else False,
                 'lifetime': \
@@ -175,7 +175,7 @@ class Client:
                 'gift': True if plan.findtext('on-gift') == 'true' else False,
                 'trial_active': \
                     True if plan.findtext('on-trial') == 'true' else False,
-                'trial_elegible': \
+                'trial_eligible': \
                     True if plan.findtext('eligible-for-free-trial') == 'true' \
                     else False,
                 'lifetime': \
@@ -231,7 +231,7 @@ class Client:
                 'gift': True if plan.findtext('on-gift') == 'true' else False,
                 'trial_active': \
                     True if plan.findtext('on-trial') == 'true' else False,
-                'trial_elegible': \
+                'trial_eligible': \
                     True if plan.findtext('eligible-for-free-trial') == 'true' \
                     else False,
                 'lifetime': \
