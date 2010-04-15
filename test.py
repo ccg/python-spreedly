@@ -14,6 +14,7 @@ class TestCase(unittest.TestCase):
         'feature_level', 'gift', 'last_name', 'lifetime', 'name', 'recurring',
         'screen_name', 'token', 'trial_active', 'trial_eligible', #'plan',
     ])
+    plans = []
 
     def setUp(self):
         self.sclient = Client(SPREEDLY_AUTH_TOKEN, SPREEDLY_SITE_NAME)
@@ -35,6 +36,7 @@ class TestCase(unittest.TestCase):
 
         for plan in self.sclient.get_plans():
             self.assertEquals(set(plan.keys()), keys)
+            self.plans.append(plan)
 
     def test_create_subscriber(self):
         subscriber = self.sclient.create_subscriber(1, 'test')
@@ -43,17 +45,25 @@ class TestCase(unittest.TestCase):
         # Delete subscriber
         self.sclient.delete_subscriber(1)
 
-    def test_subscribe(self):
+    def test_subscribe_free_trial(self):
         # Create a subscriber first
         subscriber = self.sclient.create_subscriber(1, 'test')
 
         # Subscribe to a free trial
-        subscription = self.sclient.subscribe(1, 1824, True)
+        if not self.plans:
+            self.plans = self.sclient.get_plans()
+        for plan in self.plans:
+            if plan['enabled'] and plan['plan_type'] == 'free_trial':
+                break
+        else:
+            raise Exception("You need to set an active free-trial plan on your spreedly.com account.")
+        plan_id = plan['spreedly_id']
+        subscription = self.sclient.subscribe(1, plan_id, True)
         self.assertEquals(set(subscriber.keys()), self.subscriber_keys)
         assert subscription['trial_active']
 
         # Delete subscriber
-        #self.sclient.delete_subscriber(1)
+        self.sclient.delete_subscriber(1)
 
     def test_delete_subscriber(self):
         self.sclient.create_subscriber(1, 'test')
