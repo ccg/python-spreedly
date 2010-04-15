@@ -26,15 +26,15 @@ class TestCase(unittest.TestCase):
         self.sclient.cleanup()
 
     def test_get_plans(self):
-        keys = [
+        keys = set([
             'date_changed', 'terms', 'name', 'force_recurring', 'feature_level',
             'price', 'enabled', 'plan_type', 'force_renew', 'duration_units',
             'version', 'spreedly_site_id', 'duration', 'created_at',
             'spreedly_id', 'return_url', 'description'
-        ]
+        ])
 
         for plan in self.sclient.get_plans():
-            self.assertEquals(plan.keys(), keys)
+            self.assertEquals(set(plan.keys()), keys)
 
     def test_create_subscriber(self):
         subscriber = self.sclient.create_subscriber(1, 'test')
