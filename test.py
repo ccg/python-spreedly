@@ -3,8 +3,8 @@ import unittest
 
 from api import Client
 
-SPREEDLY_AUTH_TOKEN = '59f064f450af88df24f54281f3d78ad8ee0eb8f0'
-SPREEDLY_SITE_NAME = 'shelfworthytest'
+SPREEDLY_AUTH_TOKEN = '8cd66e5116f83c800d6fe4292c832ed7cdd3db37'
+SPREEDLY_SITE_NAME = 'pybrew-pyspreedly-test'
 
 
 class TestCase(unittest.TestCase):
